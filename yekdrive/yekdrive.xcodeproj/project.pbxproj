@@ -12,11 +12,8 @@
 		7744742E18E6E1E0000C0153 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7744742D18E6E1E0000C0153 /* UIKit.framework */; };
 		7744743418E6E1E0000C0153 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7744743218E6E1E0000C0153 /* InfoPlist.strings */; };
 		7744743618E6E1E0000C0153 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744743518E6E1E0000C0153 /* main.m */; };
-		7744743A18E6E1E0000C0153 /* ELVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744743918E6E1E0000C0153 /* ELVAppDelegate.m */; };
 		7744743D18E6E1E1000C0153 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7744743B18E6E1E1000C0153 /* Main_iPhone.storyboard */; };
 		7744744018E6E1E1000C0153 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7744743E18E6E1E1000C0153 /* Main_iPad.storyboard */; };
-		7744744318E6E1E1000C0153 /* ELVMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744744218E6E1E1000C0153 /* ELVMasterViewController.m */; };
-		7744744618E6E1E1000C0153 /* ELVDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744744518E6E1E1000C0153 /* ELVDetailViewController.m */; };
 		7744744818E6E1E1000C0153 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7744744718E6E1E1000C0153 /* Images.xcassets */; };
 		7744744F18E6E1E1000C0153 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7744744E18E6E1E1000C0153 /* XCTest.framework */; };
 		7744745018E6E1E1000C0153 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7744742918E6E1E0000C0153 /* Foundation.framework */; };
@@ -26,6 +23,15 @@
 		7744746518E6E35C000C0153 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7744746418E6E35C000C0153 /* DropboxSDK.framework */; };
 		7744746718E6E38A000C0153 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7744746618E6E38A000C0153 /* Security.framework */; };
 		7744746918E6E395000C0153 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7744746818E6E395000C0153 /* QuartzCore.framework */; };
+		7744747118E6F300000C0153 /* ELVDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744746E18E6F300000C0153 /* ELVDetailViewController.m */; };
+		7744747218E6F300000C0153 /* ELVMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744747018E6F300000C0153 /* ELVMasterViewController.m */; };
+		7744747518E6F320000C0153 /* ELVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744747418E6F320000C0153 /* ELVAppDelegate.m */; };
+		7744747718E6F42A000C0153 /* Accounts_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7744747618E6F42A000C0153 /* Accounts_iPhone.storyboard */; };
+		7744747C18E6F7C1000C0153 /* box.png in Resources */ = {isa = PBXBuildFile; fileRef = 7744747918E6F7C1000C0153 /* box.png */; };
+		7744747D18E6F7C1000C0153 /* OneDrive.png in Resources */ = {isa = PBXBuildFile; fileRef = 7744747A18E6F7C1000C0153 /* OneDrive.png */; };
+		7744747E18E6F7C1000C0153 /* dropbox.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 7744747B18E6F7C1000C0153 /* dropbox.jpeg */; };
+		7744748218E6F924000C0153 /* ELVAccountSelectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744748118E6F924000C0153 /* ELVAccountSelectionVC.m */; };
+		7744748518E6FA8E000C0153 /* ELVAccountAddDropboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744748418E6FA8E000C0153 /* ELVAccountAddDropboxVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,14 +53,8 @@
 		7744743318E6E1E0000C0153 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7744743518E6E1E0000C0153 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7744743718E6E1E0000C0153 /* yekdrive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yekdrive-Prefix.pch"; sourceTree = "<group>"; };
-		7744743818E6E1E0000C0153 /* ELVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELVAppDelegate.h; sourceTree = "<group>"; };
-		7744743918E6E1E0000C0153 /* ELVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELVAppDelegate.m; sourceTree = "<group>"; };
 		7744743C18E6E1E1000C0153 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		7744743F18E6E1E1000C0153 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		7744744118E6E1E1000C0153 /* ELVMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELVMasterViewController.h; sourceTree = "<group>"; };
-		7744744218E6E1E1000C0153 /* ELVMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELVMasterViewController.m; sourceTree = "<group>"; };
-		7744744418E6E1E1000C0153 /* ELVDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELVDetailViewController.h; sourceTree = "<group>"; };
-		7744744518E6E1E1000C0153 /* ELVDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELVDetailViewController.m; sourceTree = "<group>"; };
 		7744744718E6E1E1000C0153 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7744744D18E6E1E1000C0153 /* yekdriveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yekdriveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7744744E18E6E1E1000C0153 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -64,6 +64,20 @@
 		7744746418E6E35C000C0153 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		7744746618E6E38A000C0153 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7744746818E6E395000C0153 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7744746D18E6F300000C0153 /* ELVDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVDetailViewController.h; sourceTree = "<group>"; };
+		7744746E18E6F300000C0153 /* ELVDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVDetailViewController.m; sourceTree = "<group>"; };
+		7744746F18E6F300000C0153 /* ELVMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVMasterViewController.h; sourceTree = "<group>"; };
+		7744747018E6F300000C0153 /* ELVMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVMasterViewController.m; sourceTree = "<group>"; };
+		7744747318E6F320000C0153 /* ELVAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVAppDelegate.h; sourceTree = "<group>"; };
+		7744747418E6F320000C0153 /* ELVAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVAppDelegate.m; sourceTree = "<group>"; };
+		7744747618E6F42A000C0153 /* Accounts_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Accounts_iPhone.storyboard; sourceTree = "<group>"; };
+		7744747918E6F7C1000C0153 /* box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box.png; sourceTree = "<group>"; };
+		7744747A18E6F7C1000C0153 /* OneDrive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OneDrive.png; sourceTree = "<group>"; };
+		7744747B18E6F7C1000C0153 /* dropbox.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dropbox.jpeg; sourceTree = "<group>"; };
+		7744748018E6F924000C0153 /* ELVAccountSelectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVAccountSelectionVC.h; sourceTree = "<group>"; };
+		7744748118E6F924000C0153 /* ELVAccountSelectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVAccountSelectionVC.m; sourceTree = "<group>"; };
+		7744748318E6FA8E000C0153 /* ELVAccountAddDropboxVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVAccountAddDropboxVC.h; sourceTree = "<group>"; };
+		7744748418E6FA8E000C0153 /* ELVAccountAddDropboxVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVAccountAddDropboxVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,16 +143,9 @@
 		7744742F18E6E1E0000C0153 /* yekdrive */ = {
 			isa = PBXGroup;
 			children = (
-				7744743818E6E1E0000C0153 /* ELVAppDelegate.h */,
-				7744743918E6E1E0000C0153 /* ELVAppDelegate.m */,
-				7744743B18E6E1E1000C0153 /* Main_iPhone.storyboard */,
-				7744743E18E6E1E1000C0153 /* Main_iPad.storyboard */,
-				7744744118E6E1E1000C0153 /* ELVMasterViewController.h */,
-				7744744218E6E1E1000C0153 /* ELVMasterViewController.m */,
-				7744744418E6E1E1000C0153 /* ELVDetailViewController.h */,
-				7744744518E6E1E1000C0153 /* ELVDetailViewController.m */,
 				7744744718E6E1E1000C0153 /* Images.xcassets */,
 				7744743018E6E1E0000C0153 /* Supporting Files */,
+				7744746A18E6F2B5000C0153 /* UI */,
 			);
 			path = yekdrive;
 			sourceTree = "<group>";
@@ -146,6 +153,7 @@
 		7744743018E6E1E0000C0153 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7744747818E6F6CB000C0153 /* Images */,
 				7744743118E6E1E0000C0153 /* yekdrive-Info.plist */,
 				7744743218E6E1E0000C0153 /* InfoPlist.strings */,
 				7744743518E6E1E0000C0153 /* main.m */,
@@ -170,6 +178,60 @@
 				7744745718E6E1E1000C0153 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7744746A18E6F2B5000C0153 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7744747318E6F320000C0153 /* ELVAppDelegate.h */,
+				7744747418E6F320000C0153 /* ELVAppDelegate.m */,
+				7744746B18E6F2B5000C0153 /* StoryBoards */,
+				7744746C18E6F2B5000C0153 /* ViewControllers */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7744746B18E6F2B5000C0153 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				7744743B18E6E1E1000C0153 /* Main_iPhone.storyboard */,
+				7744743E18E6E1E1000C0153 /* Main_iPad.storyboard */,
+				7744747618E6F42A000C0153 /* Accounts_iPhone.storyboard */,
+			);
+			path = StoryBoards;
+			sourceTree = "<group>";
+		};
+		7744746C18E6F2B5000C0153 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7744747F18E6F8D8000C0153 /* Accounts */,
+				7744746D18E6F300000C0153 /* ELVDetailViewController.h */,
+				7744746E18E6F300000C0153 /* ELVDetailViewController.m */,
+				7744746F18E6F300000C0153 /* ELVMasterViewController.h */,
+				7744747018E6F300000C0153 /* ELVMasterViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7744747818E6F6CB000C0153 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				7744747918E6F7C1000C0153 /* box.png */,
+				7744747A18E6F7C1000C0153 /* OneDrive.png */,
+				7744747B18E6F7C1000C0153 /* dropbox.jpeg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		7744747F18E6F8D8000C0153 /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				7744748018E6F924000C0153 /* ELVAccountSelectionVC.h */,
+				7744748118E6F924000C0153 /* ELVAccountSelectionVC.m */,
+				7744748318E6FA8E000C0153 /* ELVAccountAddDropboxVC.h */,
+				7744748418E6FA8E000C0153 /* ELVAccountAddDropboxVC.m */,
+			);
+			path = Accounts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,7 +313,11 @@
 			files = (
 				7744744018E6E1E1000C0153 /* Main_iPad.storyboard in Resources */,
 				7744744818E6E1E1000C0153 /* Images.xcassets in Resources */,
+				7744747718E6F42A000C0153 /* Accounts_iPhone.storyboard in Resources */,
+				7744747C18E6F7C1000C0153 /* box.png in Resources */,
+				7744747D18E6F7C1000C0153 /* OneDrive.png in Resources */,
 				7744743D18E6E1E1000C0153 /* Main_iPhone.storyboard in Resources */,
+				7744747E18E6F7C1000C0153 /* dropbox.jpeg in Resources */,
 				7744743418E6E1E0000C0153 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,10 +337,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7744743A18E6E1E0000C0153 /* ELVAppDelegate.m in Sources */,
-				7744744618E6E1E1000C0153 /* ELVDetailViewController.m in Sources */,
+				7744747118E6F300000C0153 /* ELVDetailViewController.m in Sources */,
+				7744748218E6F924000C0153 /* ELVAccountSelectionVC.m in Sources */,
+				7744747218E6F300000C0153 /* ELVMasterViewController.m in Sources */,
+				7744747518E6F320000C0153 /* ELVAppDelegate.m in Sources */,
 				7744743618E6E1E0000C0153 /* main.m in Sources */,
-				7744744318E6E1E1000C0153 /* ELVMasterViewController.m in Sources */,
+				7744748518E6FA8E000C0153 /* ELVAccountAddDropboxVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +379,7 @@
 				7744743C18E6E1E1000C0153 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		7744743E18E6E1E1000C0153 /* Main_iPad.storyboard */ = {
@@ -319,6 +388,7 @@
 				7744743F18E6E1E1000C0153 /* Base */,
 			);
 			name = Main_iPad.storyboard;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		7744745718E6E1E1000C0153 /* InfoPlist.strings */ = {
@@ -497,6 +567,7 @@
 				7744746018E6E1E1000C0153 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7744746118E6E1E1000C0153 /* Build configuration list for PBXNativeTarget "yekdriveTests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +576,7 @@
 				7744746318E6E1E1000C0153 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
