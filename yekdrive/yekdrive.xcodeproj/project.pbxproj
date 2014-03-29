@@ -32,6 +32,8 @@
 		7744747E18E6F7C1000C0153 /* dropbox.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 7744747B18E6F7C1000C0153 /* dropbox.jpeg */; };
 		7744748218E6F924000C0153 /* ELVAccountSelectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744748118E6F924000C0153 /* ELVAccountSelectionVC.m */; };
 		7744748518E6FA8E000C0153 /* ELVAccountAddDropboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744748418E6FA8E000C0153 /* ELVAccountAddDropboxVC.m */; };
+		7744748B18E6FE8F000C0153 /* ELVStorageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744748A18E6FE8F000C0153 /* ELVStorageItem.m */; };
+		7744749018E7004C000C0153 /* ELVDropboxRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744748F18E7004C000C0153 /* ELVDropboxRepository.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,11 @@
 		7744748118E6F924000C0153 /* ELVAccountSelectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVAccountSelectionVC.m; sourceTree = "<group>"; };
 		7744748318E6FA8E000C0153 /* ELVAccountAddDropboxVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVAccountAddDropboxVC.h; sourceTree = "<group>"; };
 		7744748418E6FA8E000C0153 /* ELVAccountAddDropboxVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVAccountAddDropboxVC.m; sourceTree = "<group>"; };
+		7744748918E6FE8F000C0153 /* ELVStorageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVStorageItem.h; sourceTree = "<group>"; };
+		7744748A18E6FE8F000C0153 /* ELVStorageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVStorageItem.m; sourceTree = "<group>"; };
+		7744748C18E6FF8E000C0153 /* ELVIOnlineStorageRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELVIOnlineStorageRepository.h; sourceTree = "<group>"; };
+		7744748E18E7004C000C0153 /* ELVDropboxRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVDropboxRepository.h; sourceTree = "<group>"; };
+		7744748F18E7004C000C0153 /* ELVDropboxRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVDropboxRepository.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +150,8 @@
 		7744742F18E6E1E0000C0153 /* yekdrive */ = {
 			isa = PBXGroup;
 			children = (
+				7744748D18E7002C000C0153 /* Repositories */,
+				7744748618E6FE00000C0153 /* Core */,
 				7744744718E6E1E1000C0153 /* Images.xcassets */,
 				7744743018E6E1E0000C0153 /* Supporting Files */,
 				7744746A18E6F2B5000C0153 /* UI */,
@@ -232,6 +241,41 @@
 				7744748418E6FA8E000C0153 /* ELVAccountAddDropboxVC.m */,
 			);
 			path = Accounts;
+			sourceTree = "<group>";
+		};
+		7744748618E6FE00000C0153 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7744748718E6FE00000C0153 /* Contracts */,
+				7744748818E6FE00000C0153 /* Models */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7744748718E6FE00000C0153 /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				7744748C18E6FF8E000C0153 /* ELVIOnlineStorageRepository.h */,
+			);
+			path = Contracts;
+			sourceTree = "<group>";
+		};
+		7744748818E6FE00000C0153 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7744748918E6FE8F000C0153 /* ELVStorageItem.h */,
+				7744748A18E6FE8F000C0153 /* ELVStorageItem.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7744748D18E7002C000C0153 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				7744748E18E7004C000C0153 /* ELVDropboxRepository.h */,
+				7744748F18E7004C000C0153 /* ELVDropboxRepository.m */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,11 +381,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7744748B18E6FE8F000C0153 /* ELVStorageItem.m in Sources */,
 				7744747118E6F300000C0153 /* ELVDetailViewController.m in Sources */,
 				7744748218E6F924000C0153 /* ELVAccountSelectionVC.m in Sources */,
 				7744747218E6F300000C0153 /* ELVMasterViewController.m in Sources */,
 				7744747518E6F320000C0153 /* ELVAppDelegate.m in Sources */,
 				7744743618E6E1E0000C0153 /* main.m in Sources */,
+				7744749018E7004C000C0153 /* ELVDropboxRepository.m in Sources */,
 				7744748518E6FA8E000C0153 /* ELVAccountAddDropboxVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
