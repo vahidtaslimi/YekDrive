@@ -23,6 +23,9 @@
 		7744745118E6E1E1000C0153 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7744742D18E6E1E0000C0153 /* UIKit.framework */; };
 		7744745918E6E1E1000C0153 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7744745718E6E1E1000C0153 /* InfoPlist.strings */; };
 		7744745B18E6E1E1000C0153 /* yekdriveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744745A18E6E1E1000C0153 /* yekdriveTests.m */; };
+		7744746518E6E35C000C0153 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7744746418E6E35C000C0153 /* DropboxSDK.framework */; };
+		7744746718E6E38A000C0153 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7744746618E6E38A000C0153 /* Security.framework */; };
+		7744746918E6E395000C0153 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7744746818E6E395000C0153 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,9 @@
 		7744745618E6E1E1000C0153 /* yekdriveTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "yekdriveTests-Info.plist"; sourceTree = "<group>"; };
 		7744745818E6E1E1000C0153 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7744745A18E6E1E1000C0153 /* yekdriveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yekdriveTests.m; sourceTree = "<group>"; };
+		7744746418E6E35C000C0153 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		7744746618E6E38A000C0153 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7744746818E6E395000C0153 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7744746918E6E395000C0153 /* QuartzCore.framework in Frameworks */,
+				7744746718E6E38A000C0153 /* Security.framework in Frameworks */,
+				7744746518E6E35C000C0153 /* DropboxSDK.framework in Frameworks */,
 				7744742C18E6E1E0000C0153 /* CoreGraphics.framework in Frameworks */,
 				7744742E18E6E1E0000C0153 /* UIKit.framework in Frameworks */,
 				7744742A18E6E1E0000C0153 /* Foundation.framework in Frameworks */,
@@ -106,6 +115,9 @@
 		7744742818E6E1E0000C0153 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7744746818E6E395000C0153 /* QuartzCore.framework */,
+				7744746618E6E38A000C0153 /* Security.framework */,
+				7744746418E6E35C000C0153 /* DropboxSDK.framework */,
 				7744742918E6E1E0000C0153 /* Foundation.framework */,
 				7744742B18E6E1E0000C0153 /* CoreGraphics.framework */,
 				7744742D18E6E1E0000C0153 /* UIKit.framework */,
@@ -397,6 +409,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "yekdrive/yekdrive-Prefix.pch";
 				INFOPLIST_FILE = "yekdrive/yekdrive-Info.plist";
@@ -410,6 +426,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "yekdrive/yekdrive-Prefix.pch";
 				INFOPLIST_FILE = "yekdrive/yekdrive-Info.plist";
