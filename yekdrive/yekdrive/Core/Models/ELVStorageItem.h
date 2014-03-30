@@ -12,11 +12,13 @@
 @property bool isFolder;
 @property NSString* name;
 @property NSString* itemId;
-@property NSString* type;
+@property NSString* extension;
+@property NSObject* originalObject;
 
 @property  long long totalBytes;
 @property  NSDate* lastModifiedDate;
 @property  NSString* size;
 @property  NSString* icon;
 @property  NSString* filename;
+
 @end

@@ -43,7 +43,7 @@
      [self initiateLinking];
     }
     else
-        [[self navigationController] popViewControllerAnimated:YES];
+        [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,17 +55,15 @@
 
 - (void)initiateLinking {
     if (![[DBSession sharedSession] isLinked]) {
+
 		[[DBSession sharedSession] linkFromController:self];
-    } else {
-        [[DBSession sharedSession] unlinkAll];
-        [[[UIAlertView alloc]
-           initWithTitle:@"Account Unlinked!" message:@"Your dropbox account has been unlinked"
-           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]
-         show];
-        //[self updateButtons];
     }
 }
 
+- (void)removeLinking {
+        [[DBSession sharedSession] unlinkAll];
+        [[self navigationController] popToRootViewControllerAnimated:YES];
+}
 
 /*
 #pragma mark - Navigation
@@ -78,4 +76,7 @@
 }
 */
 
+- (IBAction)removeButton:(id)sender {
+    [self removeLinking];
+}
 @end

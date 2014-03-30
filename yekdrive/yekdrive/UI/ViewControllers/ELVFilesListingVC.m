@@ -1,24 +1,35 @@
 //
-//  ELVAccountSelectionVC.m
+//  ELVFilesListingVC.m
 //  yekdrive
 //
-//  Created by VT on 29/03/2014.
+//  Created by VT on 30/03/2014.
 //  Copyright (c) 2014 Elvun. All rights reserved.
 //
 
-#import "ELVAccountSelectionVC.h"
+#import "ELVFilesListingVC.h"
+#import "ELVFilesViewModel.h"
+#import "ELVStorageItem.h"
+#import "ELVIOnlineStorageRepository.h"
+#import "ELVDropboxRepository.h"
 
-@interface ELVAccountSelectionVC ()
+@interface ELVFilesListingVC ()
 
 @end
 
-@implementation ELVAccountSelectionVC
+@implementation ELVFilesListingVC
+{
+    ELVFilesViewModel* _dataContext;
+    NSMutableArray* _items;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        id<ELVIOnlineStorageRepository> dropboxRepo=[[ELVDropboxRepository alloc]init];
+        _dataContext=[[ELVFilesViewModel alloc]initWithParameters:dropboxRepo];
+        
+        _items=[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -26,7 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self load];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -40,6 +51,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - DataContext
+-(void) load
+{
+    [_dataContext loadItems];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -48,8 +65,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{   // Return the number of rows in the section.
-    return 3;
+{
+
+    return [_items count];
 }
 
 /*

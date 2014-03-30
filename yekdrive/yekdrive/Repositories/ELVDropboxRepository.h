@@ -13,5 +13,5 @@
 @interface ELVDropboxRepository : NSObject<ELVIOnlineStorageRepository,DBRestClientDelegate>
 
 @property (nonatomic, readonly) DBRestClient* restClient;
-
+@property BOOL working;
 @end

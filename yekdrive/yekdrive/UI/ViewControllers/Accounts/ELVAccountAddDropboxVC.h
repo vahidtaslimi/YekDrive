@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ELVAccountAddDropboxVC : UIViewController
+- (IBAction)removeButton:(id)sender;
 
 @end

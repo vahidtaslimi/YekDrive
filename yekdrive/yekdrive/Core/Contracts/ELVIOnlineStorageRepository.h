@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ELVStorageItem.h"
 
 @protocol ELVIOnlineStorageRepository <NSObject>
 @required
 -(NSMutableArray*)get;
-
+-(BOOL)openFile:(ELVStorageItem* )file;
 
 @end

@@ -1,18 +1,18 @@
 //
-//  ELVAccountSelectionVC.m
+//  ELVAccountsListingVC.m
 //  yekdrive
 //
-//  Created by VT on 29/03/2014.
+//  Created by VT on 30/03/2014.
 //  Copyright (c) 2014 Elvun. All rights reserved.
 //
 
-#import "ELVAccountSelectionVC.h"
+#import "ELVAccountsListingVC.h"
 
-@interface ELVAccountSelectionVC ()
+@interface ELVAccountsListingVC ()
 
 @end
 
-@implementation ELVAccountSelectionVC
+@implementation ELVAccountsListingVC
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,12 +44,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{   // Return the number of rows in the section.
-    return 3;
+{
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return 0;
 }
 
 /*
@@ -112,4 +116,9 @@
 }
 */
 
+- (IBAction)doneButtonClick:(id)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"MainView"];
+    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:vc animated:YES completion:NULL];}
 @end
