@@ -1,18 +1,18 @@
 //
-//  ELVAccountsListingVC.m
+//  ELVSettingsVC.m
 //  yekdrive
 //
-//  Created by VT on 30/03/2014.
+//  Created by VT on 31/03/2014.
 //  Copyright (c) 2014 Elvun. All rights reserved.
 //
 
-#import "ELVAccountsListingVC.h"
+#import "ELVSettingsVC.h"
 
-@interface ELVAccountsListingVC ()
+@interface ELVSettingsVC ()
 
 @end
 
-@implementation ELVAccountsListingVC
+@implementation ELVSettingsVC
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,28 +44,38 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    // Retunr the number of rows in the section.
-    return 0;
+    return 1;
+}
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.row==0)
+    {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Accounts_iPhone" bundle:nil];
+        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"account_listing"];
+        vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:vc animated:YES completion:NULL];
+    }
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"selectedaccountcell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
     // Configure the cell...
     
     return cell;
 }
-
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -116,9 +126,4 @@
 }
 */
 
-- (IBAction)doneButtonClick:(id)sender {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"files_root_view"];
-    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:vc animated:YES completion:NULL];}
 @end

@@ -22,6 +22,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="YVu-hW-E0a" id="MqW-Jn-1Bf"/>
                             <outlet property="delegate" destination="YVu-hW-E0a" id="EyF-L2-rGa"/>
@@ -180,7 +181,7 @@ taps on bellow button to remove the account.</string>
         <!--Navigation Controller-->
         <scene sceneID="1zH-kl-0Gm">
             <objects>
-                <navigationController definesPresentationContext="YES" id="zfx-xT-mIR" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="account_listing" definesPresentationContext="YES" id="zfx-xT-mIR" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uRO-gu-wW7">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -37,6 +37,7 @@
 		7744749418E7C485000C0153 /* ELVFilesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744749318E7C485000C0153 /* ELVFilesViewModel.m */; };
 		7744749718E7C820000C0153 /* ELVAccountsListingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744749618E7C820000C0153 /* ELVAccountsListingVC.m */; };
 		7744749A18E7CA3E000C0153 /* ELVFilesListingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744749918E7CA3E000C0153 /* ELVFilesListingVC.m */; };
+		77595B2218E96D1C00FBA8A1 /* ELVSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77595B2118E96D1C00FBA8A1 /* ELVSettingsVC.m */; };
 		77ADDED418E8DA2B00E88600 /* NSObject+NTXObjectExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ADDED318E8DA2B00E88600 /* NSObject+NTXObjectExtensions.m */; };
 		77ADDED818E8E6B100E88600 /* ELVFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ADDED718E8E6B100E88600 /* ELVFileCell.m */; };
 		77ADDEDB18E8E6C300E88600 /* ELVFolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ADDEDA18E8E6C300E88600 /* ELVFolderCell.m */; };
@@ -98,6 +99,8 @@
 		7744749618E7C820000C0153 /* ELVAccountsListingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVAccountsListingVC.m; sourceTree = "<group>"; };
 		7744749818E7CA3E000C0153 /* ELVFilesListingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVFilesListingVC.h; sourceTree = "<group>"; };
 		7744749918E7CA3E000C0153 /* ELVFilesListingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVFilesListingVC.m; sourceTree = "<group>"; };
+		77595B2018E96D1C00FBA8A1 /* ELVSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVSettingsVC.h; sourceTree = "<group>"; };
+		77595B2118E96D1C00FBA8A1 /* ELVSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVSettingsVC.m; sourceTree = "<group>"; };
 		77ADDED218E8DA2B00E88600 /* NSObject+NTXObjectExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NTXObjectExtensions.h"; sourceTree = "<group>"; };
 		77ADDED318E8DA2B00E88600 /* NSObject+NTXObjectExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NTXObjectExtensions.m"; sourceTree = "<group>"; };
 		77ADDED618E8E6B100E88600 /* ELVFileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVFileCell.h; sourceTree = "<group>"; };
@@ -235,6 +238,7 @@
 		7744746C18E6F2B5000C0153 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				77595B1F18E96D1C00FBA8A1 /* Settings */,
 				7744747F18E6F8D8000C0153 /* Accounts */,
 				7744746D18E6F300000C0153 /* ELVDetailViewController.h */,
 				7744746E18E6F300000C0153 /* ELVDetailViewController.m */,
@@ -313,6 +317,15 @@
 				7744749318E7C485000C0153 /* ELVFilesViewModel.m */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		77595B1F18E96D1C00FBA8A1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				77595B2018E96D1C00FBA8A1 /* ELVSettingsVC.h */,
+				77595B2118E96D1C00FBA8A1 /* ELVSettingsVC.m */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		77ADDED118E8DA1A00E88600 /* Extensions */ = {
@@ -448,6 +461,7 @@
 				7744749718E7C820000C0153 /* ELVAccountsListingVC.m in Sources */,
 				7744749A18E7CA3E000C0153 /* ELVFilesListingVC.m in Sources */,
 				7744747218E6F300000C0153 /* ELVMasterViewController.m in Sources */,
+				77595B2218E96D1C00FBA8A1 /* ELVSettingsVC.m in Sources */,
 				7744747518E6F320000C0153 /* ELVAppDelegate.m in Sources */,
 				7744743618E6E1E0000C0153 /* main.m in Sources */,
 				7744749018E7004C000C0153 /* ELVDropboxRepository.m in Sources */,
