@@ -153,6 +153,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nameLabel" destination="B9o-Sk-q16" id="QfK-9I-DW3"/>
+                                    <segue destination="rns-Ze-kuw" kind="push" identifier="viewfile" id="PEk-wd-WkB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -162,12 +163,40 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="YuF-Pg-7Pa"/>
-                    <navigationItem key="navigationItem" title="files" id="tv7-od-cb4"/>
+                    <navigationItem key="navigationItem" title="files" id="tv7-od-cb4">
+                        <barButtonItem key="leftBarButtonItem" title="up" id="D4E-pb-2LC">
+                            <connections>
+                                <action selector="upButtonHandler:" destination="lAJ-NX-ggg" id="2jt-gG-jf1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="upButton" destination="D4E-pb-2LC" id="qLB-SB-c9N"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Oa-3S-2rm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1553" y="-480"/>
+        </scene>
+        <!--File ViewVC-->
+        <scene sceneID="94A-QP-DdL">
+            <objects>
+                <viewController id="rns-Ze-kuw" customClass="ELVFileViewVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0qs-O6-N6N"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pdc-FZ-00s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oc6-xj-aBz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mZL-0Z-Exz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ufG-pv-SES" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2060" y="-549"/>
         </scene>
     </scenes>
     <resources>

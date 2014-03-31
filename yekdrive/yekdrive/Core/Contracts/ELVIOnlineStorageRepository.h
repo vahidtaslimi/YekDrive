@@ -11,9 +11,11 @@
 
 @protocol ELVIOnlineStorageRepository <NSObject>
 @required
--(void)loadItems;
+-(void)loadItemsInFolder:(ELVStorageItem*)parentFolder;
 -(BOOL)openFile:(ELVStorageItem* )file;
 @property BOOL isLoading;
 @property NSMutableArray* items;
+@property CGFloat downloadProgress;
+@property NSString* lastDownloadedFilename;
 
 @end

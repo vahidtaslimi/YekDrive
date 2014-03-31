@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ELVEnums.h"
 
 @interface ELVStorageItem : NSObject
 @property bool isFolder;
@@ -20,5 +21,12 @@
 @property  NSString* size;
 @property  NSString* icon;
 @property  NSString* filename;
+@property NSString* path;
+@property ELVStorageItem* parent;
+@property StorageSourceType storageSource;
+-(NSString*) getLocalPath;
+-(NSString*)getLocalFolder;
 
 @end
+
+

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ELVFilesListingVC : UITableViewController
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *upButton;
+- (IBAction)upButtonHandler:(id)sender;
 
 @end

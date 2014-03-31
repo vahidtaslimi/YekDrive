@@ -13,23 +13,52 @@
 {
     NSString* photosHash;
     DBRestClient* restClient;
+    ELVStorageItem* _currentItem;
 }
 
 @synthesize items;
 @synthesize isLoading;
+@synthesize downloadProgress;
+@synthesize lastDownloadedFilename;
 
-
--(void)loadItems
+-(void)loadItemsInFolder:(ELVStorageItem*)parentFolder
 {
+    NSString* path=@"/";
+    _currentItem=parentFolder;
+    if(parentFolder !=nil)
+    {
+        if(parentFolder.isFolder)
+        {
+            path=parentFolder.path;
+        }
+        else{
+            [self openFile:parentFolder];
+        }
+    }
+    
     self.isLoading=true;
-    [self.restClient loadMetadata:@"/"];
+    [self.restClient loadMetadata:path];
 }
 
 -(BOOL)openFile:(ELVStorageItem* )file
 {
-    DBMetadata* item =(DBMetadata*) file.originalObject ;
-    NSString* localPath=[self getFullPath:file];
-    [self.restClient loadThumbnail:item.path ofSize:@"iphone_bestfit" intoPath:localPath];
+    self.downloadProgress=0;
+    //DBMetadata* item =(DBMetadata*) file.originalObject ;
+    NSString* localPath=[file getLocalPath];
+    
+    //[self.restClient loadThumbnail:item.path ofSize:@"iphone_bestfit" intoPath:localPath];
+    if(![[NSFileManager defaultManager]fileExistsAtPath:localPath])
+    {
+        NSString* localFolder =[file getLocalFolder];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:localFolder]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:localFolder withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        [self.restClient loadFile:file.path intoPath:localPath];
+    }
+    else
+    {
+        self.lastDownloadedFilename=localPath;
+    }
     return true;
 }
 
@@ -54,10 +83,13 @@
         item.size=child.humanReadableSize;
         item.icon=child.icon;
         item.filename=child.filename;
+        item.path=child.path;
+        item.parent=_currentItem;
+        item.storageSource =StorageSourceTypeDropBox;
         [currentItems addObject:item];
     }
     
-    self.items =   currentItems ;
+    self.items = currentItems ;
     self.isLoading=false;
 }
 
@@ -83,7 +115,19 @@
     
 }
 
+- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)destPath;
+{
+    self.lastDownloadedFilename = destPath;
+}
 
+- (void)restClient:(DBRestClient*)client loadProgress:(CGFloat)progress forFile:(NSString*)destPath
+{
+    self.downloadProgress = progress;
+}
+- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error
+{
+    self.downloadProgress=0;
+}
 #pragma mark private methods
 
 - (void)didPressRandomPhoto {
@@ -103,6 +147,17 @@
 
 - (NSString*)getFullPath:(ELVStorageItem*) item {
     return [NSTemporaryDirectory() stringByAppendingPathComponent:@"photo.jpg"];
+    
+    NSString * yourPath = @"/folder1/folder2/folder3";
+    NSError * error = nil;
+    BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath: yourPath
+                                             withIntermediateDirectories:YES
+                                                              attributes:nil
+                                                                   error:&error];
+    if (!success)
+        return @"";
+    else
+        return yourPath;
 }
 
 - (DBRestClient*)restClient {

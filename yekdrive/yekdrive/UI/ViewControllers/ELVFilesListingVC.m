@@ -14,6 +14,7 @@
 #import "NSObject+NTXObjectExtensions.h"
 #import "ELVFileCell.h"
 #import "ELVFolderCell.h"
+#import "ELVFileViewVC.h"
 
 static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKvoContext";
 
@@ -24,7 +25,7 @@ static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKv
 @implementation ELVFilesListingVC
 {
     ELVFilesViewModel* _dataContext;
-    
+    ELVStorageItem* _currentItem;
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
@@ -64,7 +65,7 @@ static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKv
 #pragma mark - DataContext
 -(void) load
 {
-    [_dataContext loadItems];
+    [_dataContext loadItemsInFolder:_currentItem];
 }
 
 #pragma mark - Binding section
@@ -72,11 +73,16 @@ static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKv
 - (void) removeBindings
 {
     [_dataContext removeObserverSafely:self forKeyPath:@"items" context:&ELVFileListingVCDropboxKvoContext];
+    //  [_dataContext removeObserverSafely:self forKeyPath:@"lastDownloadedFilename" context:&ELVFileListingVCDropboxKvoContext];
+    //[_dataContext removeObserverSafely:self forKeyPath:@"downloadProgress" context:&ELVFileListingVCDropboxKvoContext];
+    
 }
 
 - (void) setupBindings
 {
     [_dataContext addObserver:self forKeyPath:@"items" options:NSKeyValueObservingOptionNew context:&ELVFileListingVCDropboxKvoContext];
+    // [_dataContext addObserver:self forKeyPath:@"lastDownloadedFilename" options:NSKeyValueObservingOptionNew context:&ELVFileListingVCDropboxKvoContext];
+    //[_dataContext addObserver:self forKeyPath:@"downloadProgress" options:NSKeyValueObservingOptionNew context:&ELVFileListingVCDropboxKvoContext];
     
 }
 
@@ -129,66 +135,43 @@ static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKv
     {
         ELVFolderCell* cell = [tableView dequeueReusableCellWithIdentifier:@"foldercell" forIndexPath:indexPath];
         cell.nameLabel.text=item.name;
-        
+        cell.rowIndex = indexPath.row;
         return cell;
     }
     else
     {
         ELVFileCell*     cell = [tableView dequeueReusableCellWithIdentifier:@"filecell" forIndexPath:indexPath];
         cell.nameLabel.text=item.name;
+           cell.rowIndex = indexPath.row;
         return cell;
     }
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _currentItem= [_dataContext.items objectAtIndex:indexPath.row];
+    if(_currentItem.isFolder)
+        [self load];
+}
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
 
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
+- (IBAction)upButtonHandler:(id)sender {
+    if(_currentItem == nil)
+        return;
+    _currentItem =_currentItem.parent;
+    [self load];
+}
 
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString: @"viewfile"])
+    {
+        ELVFileCell* cell = sender;
+        ELVFileViewVC* vc=   (ELVFileViewVC*)[segue destinationViewController];
+        vc.dataContext = _dataContext;
+        vc.item =[_dataContext.items objectAtIndex:cell.rowIndex];
+    }
+}
 @end

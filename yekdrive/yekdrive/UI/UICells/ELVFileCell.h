@@ -11,4 +11,6 @@
 @interface ELVFileCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property int rowIndex;
+
 @end
