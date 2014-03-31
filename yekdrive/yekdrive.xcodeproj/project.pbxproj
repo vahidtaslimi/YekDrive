@@ -37,6 +37,10 @@
 		7744749418E7C485000C0153 /* ELVFilesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744749318E7C485000C0153 /* ELVFilesViewModel.m */; };
 		7744749718E7C820000C0153 /* ELVAccountsListingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744749618E7C820000C0153 /* ELVAccountsListingVC.m */; };
 		7744749A18E7CA3E000C0153 /* ELVFilesListingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744749918E7CA3E000C0153 /* ELVFilesListingVC.m */; };
+		77ADDED418E8DA2B00E88600 /* NSObject+NTXObjectExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ADDED318E8DA2B00E88600 /* NSObject+NTXObjectExtensions.m */; };
+		77ADDED818E8E6B100E88600 /* ELVFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ADDED718E8E6B100E88600 /* ELVFileCell.m */; };
+		77ADDEDB18E8E6C300E88600 /* ELVFolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ADDEDA18E8E6C300E88600 /* ELVFolderCell.m */; };
+		77ADDEDD18E8E8C500E88600 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 77ADDEDC18E8E8C500E88600 /* folder.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +98,13 @@
 		7744749618E7C820000C0153 /* ELVAccountsListingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVAccountsListingVC.m; sourceTree = "<group>"; };
 		7744749818E7CA3E000C0153 /* ELVFilesListingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVFilesListingVC.h; sourceTree = "<group>"; };
 		7744749918E7CA3E000C0153 /* ELVFilesListingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVFilesListingVC.m; sourceTree = "<group>"; };
+		77ADDED218E8DA2B00E88600 /* NSObject+NTXObjectExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NTXObjectExtensions.h"; sourceTree = "<group>"; };
+		77ADDED318E8DA2B00E88600 /* NSObject+NTXObjectExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NTXObjectExtensions.m"; sourceTree = "<group>"; };
+		77ADDED618E8E6B100E88600 /* ELVFileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVFileCell.h; sourceTree = "<group>"; };
+		77ADDED718E8E6B100E88600 /* ELVFileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVFileCell.m; sourceTree = "<group>"; };
+		77ADDED918E8E6C300E88600 /* ELVFolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVFolderCell.h; sourceTree = "<group>"; };
+		77ADDEDA18E8E6C300E88600 /* ELVFolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVFolderCell.m; sourceTree = "<group>"; };
+		77ADDEDC18E8E8C500E88600 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +213,7 @@
 		7744746A18E6F2B5000C0153 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				77ADDED518E8E68800E88600 /* UICells */,
 				7744747318E6F320000C0153 /* ELVAppDelegate.h */,
 				7744747418E6F320000C0153 /* ELVAppDelegate.m */,
 				7744746B18E6F2B5000C0153 /* StoryBoards */,
@@ -237,6 +249,7 @@
 		7744747818E6F6CB000C0153 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				77ADDEDC18E8E8C500E88600 /* folder.png */,
 				7744747918E6F7C1000C0153 /* box.png */,
 				7744747A18E6F7C1000C0153 /* OneDrive.png */,
 				7744747B18E6F7C1000C0153 /* dropbox.jpeg */,
@@ -260,6 +273,7 @@
 		7744748618E6FE00000C0153 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				77ADDED118E8DA1A00E88600 /* Extensions */,
 				7744748718E6FE00000C0153 /* Contracts */,
 				7744748818E6FE00000C0153 /* Models */,
 			);
@@ -299,6 +313,26 @@
 				7744749318E7C485000C0153 /* ELVFilesViewModel.m */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		77ADDED118E8DA1A00E88600 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				77ADDED218E8DA2B00E88600 /* NSObject+NTXObjectExtensions.h */,
+				77ADDED318E8DA2B00E88600 /* NSObject+NTXObjectExtensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		77ADDED518E8E68800E88600 /* UICells */ = {
+			isa = PBXGroup;
+			children = (
+				77ADDED618E8E6B100E88600 /* ELVFileCell.h */,
+				77ADDED718E8E6B100E88600 /* ELVFileCell.m */,
+				77ADDED918E8E6C300E88600 /* ELVFolderCell.h */,
+				77ADDEDA18E8E6C300E88600 /* ELVFolderCell.m */,
+			);
+			path = UICells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +414,7 @@
 			files = (
 				7744744018E6E1E1000C0153 /* Main_iPad.storyboard in Resources */,
 				7744744818E6E1E1000C0153 /* Images.xcassets in Resources */,
+				77ADDEDD18E8E8C500E88600 /* folder.png in Resources */,
 				7744747718E6F42A000C0153 /* Accounts_iPhone.storyboard in Resources */,
 				7744747C18E6F7C1000C0153 /* box.png in Resources */,
 				7744747D18E6F7C1000C0153 /* OneDrive.png in Resources */,
@@ -405,6 +440,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7744748B18E6FE8F000C0153 /* ELVStorageItem.m in Sources */,
+				77ADDEDB18E8E6C300E88600 /* ELVFolderCell.m in Sources */,
+				77ADDED418E8DA2B00E88600 /* NSObject+NTXObjectExtensions.m in Sources */,
+				77ADDED818E8E6B100E88600 /* ELVFileCell.m in Sources */,
 				7744747118E6F300000C0153 /* ELVDetailViewController.m in Sources */,
 				7744748218E6F924000C0153 /* ELVAccountSelectionVC.m in Sources */,
 				7744749718E7C820000C0153 /* ELVAccountsListingVC.m in Sources */,

@@ -14,4 +14,5 @@
 
 @property (nonatomic, readonly) DBRestClient* restClient;
 @property BOOL working;
+
 @end

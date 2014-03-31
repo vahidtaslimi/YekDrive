@@ -11,6 +11,11 @@
 #import "ELVStorageItem.h"
 #import "ELVIOnlineStorageRepository.h"
 #import "ELVDropboxRepository.h"
+#import "NSObject+NTXObjectExtensions.h"
+#import "ELVFileCell.h"
+#import "ELVFolderCell.h"
+
+static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKvoContext";
 
 @interface ELVFilesListingVC ()
 
@@ -19,30 +24,27 @@
 @implementation ELVFilesListingVC
 {
     ELVFilesViewModel* _dataContext;
-    NSMutableArray* _items;
+    
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
+-(id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithStyle:style];
+    self = [super initWithCoder:aDecoder];
     if (self) {
         id<ELVIOnlineStorageRepository> dropboxRepo=[[ELVDropboxRepository alloc]init];
         _dataContext=[[ELVFilesViewModel alloc]initWithParameters:dropboxRepo];
-        
-        _items=[[NSMutableArray alloc]init];
     }
+    
     return self;
 }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self load];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self setupBindings];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self load];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,11 +53,58 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) dealloc
+{
+    if (_dataContext != nil)
+    {
+        [self removeBindings];
+    }
+}
+
 #pragma mark - DataContext
 -(void) load
 {
     [_dataContext loadItems];
 }
+
+#pragma mark - Binding section
+
+- (void) removeBindings
+{
+    [_dataContext removeObserverSafely:self forKeyPath:@"items" context:&ELVFileListingVCDropboxKvoContext];
+}
+
+- (void) setupBindings
+{
+    [_dataContext addObserver:self forKeyPath:@"items" options:NSKeyValueObservingOptionNew context:&ELVFileListingVCDropboxKvoContext];
+    
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary *)change
+                        context:(void *)context
+{
+    if ([keyPath isEqual:@"items"])
+    {
+        if ([change objectForKey:NSKeyValueChangeNewKey] == [NSNull null])
+        {
+            return;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [self.tableView reloadData];
+        });
+    }
+    else if ([keyPath isEqual:@"form.isValid"])
+    {
+        
+    }
+    else if ([keyPath isEqual:@"isProgressVisible"])
+    {
+    }
+}
+
 
 #pragma mark - Table view data source
 
@@ -66,68 +115,80 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    return [_items count];
+    
+    return [_dataContext.items count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
     
-    return cell;
+    ELVStorageItem* item=_dataContext.items[indexPath.row];
+    if(item.isFolder)
+    {
+        ELVFolderCell* cell = [tableView dequeueReusableCellWithIdentifier:@"foldercell" forIndexPath:indexPath];
+        cell.nameLabel.text=item.name;
+        
+        return cell;
+    }
+    else
+    {
+        ELVFileCell*     cell = [tableView dequeueReusableCellWithIdentifier:@"filecell" forIndexPath:indexPath];
+        cell.nameLabel.text=item.name;
+        return cell;
+    }
+    
 }
-*/
+
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

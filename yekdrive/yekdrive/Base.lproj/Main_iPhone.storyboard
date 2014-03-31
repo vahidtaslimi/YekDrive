@@ -1,37 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="WB5-61-3Q6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="cUi-kZ-frf">
-            <objects>
-                <navigationController storyboardIdentifier="MainView" id="rS3-R9-Ivy" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yXu-0R-QUA">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="WB5-61-3Q6" kind="relationship" relationship="rootViewController" id="WEU-KT-yjG"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1" y="64"/>
-        </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Controller - first-->
         <scene sceneID="0g7-8F-xTj">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="WB5-61-3Q6" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="mOy-Cc-ppI"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem key="navigationItem" title="first" id="mOy-Cc-ppI"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="FZf-rr-BrO">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="lAJ-NX-ggg" kind="relationship" relationship="viewControllers" id="ZNB-Xq-qWC"/>
+                        <segue destination="mzM-7m-EAS" kind="relationship" relationship="viewControllers" id="sCw-8o-cSm"/>
                         <segue destination="Shz-ra-klW" kind="relationship" relationship="viewControllers" id="kTa-iR-qYG"/>
                     </connections>
                 </tabBarController>
@@ -39,7 +24,24 @@
             </objects>
             <point key="canvasLocation" x="403" y="63"/>
         </scene>
-        <!--Files ListingVC - Item-->
+        <!--Navigation Controller - Files-->
+        <scene sceneID="6uC-36-73B">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="mzM-7m-EAS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Files" id="wIT-FL-bLr"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8cg-81-KYs">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lAJ-NX-ggg" kind="relationship" relationship="rootViewController" id="vpn-TC-QAv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="chn-CL-Z4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1032" y="-426"/>
+        </scene>
+        <!--Files ListingVC - files-->
         <scene sceneID="XE2-4f-cWw">
             <objects>
                 <tableViewController storyboardIdentifier="FileListingView" id="lAJ-NX-ggg" customClass="ELVFilesListingVC" sceneMemberID="viewController">
@@ -48,13 +50,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qhg-Pe-DXX">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="foldercell" id="qhg-Pe-DXX" customClass="ELVFolderCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qhg-Pe-DXX" id="3dB-g4-tH2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qK3-ex-Rdk">
+                                            <rect key="frame" x="50" y="11" width="200" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="folder.png" translatesAutoresizingMaskIntoConstraints="NO" id="85a-9v-xab">
+                                            <rect key="frame" x="20" y="10" width="22" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="qK3-ex-Rdk" id="YyU-vi-GA5"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="filecell" id="b1Q-OZ-6PP" customClass="ELVFileCell">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b1Q-OZ-6PP" id="hk1-qI-gGy">
+                                    <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9o-Sk-q16">
+                                            <rect key="frame" x="50" y="11" width="200" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qV-Bj-MFX">
+                                            <rect key="frame" x="20" y="10" width="22" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="B9o-Sk-q16" id="QfK-9I-DW3"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -63,13 +104,14 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="YuF-Pg-7Pa"/>
+                    <navigationItem key="navigationItem" title="files" id="tv7-od-cb4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Oa-3S-2rm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857" y="-354"/>
+            <point key="canvasLocation" x="1553" y="-480"/>
         </scene>
-        <!--View Controller - Item 2-->
+        <!--View Controller - Settings-->
         <scene sceneID="acc-hV-39r">
             <objects>
                 <viewController id="Shz-ra-klW" sceneMemberID="viewController">
@@ -82,13 +124,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="NCF-g0-abh"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="NCF-g0-abh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LgY-Rn-Z81" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="937" y="389"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="folder.png" width="512" height="512"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

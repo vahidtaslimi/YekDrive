@@ -11,16 +11,20 @@
 
 @implementation ELVDropboxRepository
 {
-    NSMutableArray* currentItems;
     NSString* photosHash;
     DBRestClient* restClient;
 }
 
+@synthesize items;
+@synthesize isLoading;
 
--(NSMutableArray*)get
+
+-(void)loadItems
 {
-    return currentItems;
+    self.isLoading=true;
+    [self.restClient loadMetadata:@"/"];
 }
+
 -(BOOL)openFile:(ELVStorageItem* )file
 {
     DBMetadata* item =(DBMetadata*) file.originalObject ;
@@ -33,30 +37,39 @@
 #pragma mark DBRestClientDelegate methods
 
 - (void)restClient:(DBRestClient*)client loadedMetadata:(DBMetadata*)metadata {
-
+    
     photosHash = metadata.hash;
     ELVStorageItem* item;
-    //NSArray* validExtensions = [NSArray arrayWithObjects:@"jpg", @"jpeg", nil];
-    NSMutableArray* items = [NSMutableArray new];
+    NSMutableArray* currentItems = [NSMutableArray new];
     for (DBMetadata* child in metadata.contents) {
         item=[[ELVStorageItem alloc]init];
         item.extension = [[child.path pathExtension] lowercaseString];
-        
-       // if (!child.isDirectory && [validExtensions indexOfObject:extension] != NSNotFound) {
-            [items addObject:child];
-       // }
+        item.isFolder =child.isDirectory;
+        item.name=child.filename;
+        item.itemId=child.hash;
+        item.extension=@"";
+        item.originalObject=child;
+        item.totalBytes=child.totalBytes;
+        item.lastModifiedDate=child.lastModifiedDate;
+        item.size=child.humanReadableSize;
+        item.icon=child.icon;
+        item.filename=child.filename;
+        [currentItems addObject:item];
     }
-
-    currentItems = items;
+    
+    self.items =   currentItems ;
+    self.isLoading=false;
 }
 
 - (void)restClient:(DBRestClient*)client metadataUnchangedAtPath:(NSString*)path {
-  
+    
+    self.isLoading=false;
 }
 
 - (void)restClient:(DBRestClient*)client loadMetadataFailedWithError:(NSError*)error {
     NSLog(@"restClient:loadMetadataFailedWithError: %@", [error localizedDescription]);
-
+    
+    self.isLoading=false;
     [self setWorking:NO];
 }
 
@@ -67,7 +80,7 @@
 
 - (void)restClient:(DBRestClient*)client loadThumbnailFailedWithError:(NSError*)error {
     [self setWorking:NO];
-
+    
 }
 
 

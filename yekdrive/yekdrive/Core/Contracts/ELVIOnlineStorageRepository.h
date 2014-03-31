@@ -11,7 +11,9 @@
 
 @protocol ELVIOnlineStorageRepository <NSObject>
 @required
--(NSMutableArray*)get;
+-(void)loadItems;
 -(BOOL)openFile:(ELVStorageItem* )file;
+@property BOOL isLoading;
+@property NSMutableArray* items;
 
 @end

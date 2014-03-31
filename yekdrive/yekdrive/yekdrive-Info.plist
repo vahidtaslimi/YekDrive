@@ -36,7 +36,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
-	<string>Accounts_iPhone</string>
+	<string>Main_iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Main_iPad</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -10,11 +10,15 @@
 #import "ELVIOnlineStorageRepository.h"
 
 @interface ELVFilesViewModel : NSObject
+typedef void (^loadBlockSuccess) (NSMutableArray* items);
+typedef void (^loadBlockFailure) (NSString* errorMessage);
 
 @property NSMutableArray* items;
 
 - (id)initWithParameters:(id<ELVIOnlineStorageRepository>) dropboxRepository;
 
 -(void) loadItems;
+
+-(void) loadItemsWithBock:(loadBlockSuccess)successBlock andFailureBlock:(loadBlockFailure)failureBlock;
 
 @end
