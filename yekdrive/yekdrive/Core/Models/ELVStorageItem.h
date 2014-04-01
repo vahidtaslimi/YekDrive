@@ -25,6 +25,10 @@
 @property StorageSourceType storageSource;
 @property BOOL isDeleted;
 
+//OneDrive
+@property BOOL hasFullFolderTree;
+@property NSString* type;
+
 -(NSString*) getLocalPath;
 -(NSString*)getLocalFolder;
 

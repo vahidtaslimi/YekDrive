@@ -17,7 +17,7 @@ typedef void (^loadBlockFailure) (NSString* errorMessage);
 @property NSString* lastDownloadedFilename;
 @property CGFloat downloadProgress;
 
-- (id)initWithParameters:(id<ELVIOnlineStorageRepository>) dropboxRepository;
+- (id)initWithParameters:(id<ELVIOnlineStorageRepository>) dropboxRepository andOneDriveRepository:(id<ELVIOnlineStorageRepository>) oneDriveRepository;
 
 -(void) loadItemsInFolder:(ELVStorageItem*)parentFolder;
 

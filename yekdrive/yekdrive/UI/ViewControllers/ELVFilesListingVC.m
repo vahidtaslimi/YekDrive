@@ -15,6 +15,7 @@
 #import "ELVFileCell.h"
 #import "ELVFolderCell.h"
 #import "ELVFileViewVC.h"
+#import "ElVOneDriveRepository.h"
 
 static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKvoContext";
 
@@ -33,7 +34,8 @@ static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKv
     self = [super initWithCoder:aDecoder];
     if (self) {
         id<ELVIOnlineStorageRepository> dropboxRepo=[[ELVDropboxRepository alloc]init];
-        _dataContext=[[ELVFilesViewModel alloc]initWithParameters:dropboxRepo];
+        id<ELVIOnlineStorageRepository> oneDriveRepo=[[ELVOneDriveRepository alloc]init];
+        _dataContext=[[ELVFilesViewModel alloc]initWithParameters:dropboxRepo andOneDriveRepository:oneDriveRepo];
     }
     
     return self;
@@ -149,7 +151,7 @@ static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKv
     {
         ELVFileCell*     cell = [tableView dequeueReusableCellWithIdentifier:@"filecell" forIndexPath:indexPath];
         cell.nameLabel.text=item.name;
-           cell.rowIndex = indexPath.row;
+        cell.rowIndex = indexPath.row;
         return cell;
     }
     

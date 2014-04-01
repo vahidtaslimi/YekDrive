@@ -21,11 +21,12 @@ static NSString *ELVFileListingViewModelDropboxKvoContext = @"ELVFileListingView
 }
 
 
-- (id)initWithParameters:(id<ELVIOnlineStorageRepository>) dropboxRepository
+- (id)initWithParameters:(id<ELVIOnlineStorageRepository>) dropboxRepository andOneDriveRepository:(id<ELVIOnlineStorageRepository>) oneDriveRepository
 {
     self = [super init];
     if (self) {
         _dropboxRepository =dropboxRepository;
+        _oneDriveRepository = oneDriveRepository;
         _items=[[NSMutableArray alloc]init];
         [self setupBindings];
     }
@@ -34,7 +35,8 @@ static NSString *ELVFileListingViewModelDropboxKvoContext = @"ELVFileListingView
 
 -(void) loadItemsInFolder:(ELVStorageItem*)parentFolder
 {
-    [_dropboxRepository loadItemsInFolder:parentFolder];
+  //  [_dropboxRepository loadItemsInFolder:parentFolder];
+    [_oneDriveRepository loadItemsInFolder:parentFolder];
     
 }
 -(void)openItem:(ELVStorageItem *)item
