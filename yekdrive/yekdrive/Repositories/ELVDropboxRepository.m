@@ -86,6 +86,7 @@
         item.path=child.path;
         item.parent=_currentItem;
         item.storageSource =StorageSourceTypeDropBox;
+        item.isDeleted = child.isDeleted;
         [currentItems addObject:item];
     }
     

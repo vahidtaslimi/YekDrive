@@ -44,6 +44,9 @@
 		77ADDED818E8E6B100E88600 /* ELVFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ADDED718E8E6B100E88600 /* ELVFileCell.m */; };
 		77ADDEDB18E8E6C300E88600 /* ELVFolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ADDEDA18E8E6C300E88600 /* ELVFolderCell.m */; };
 		77ADDEDD18E8E8C500E88600 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 77ADDEDC18E8E8C500E88600 /* folder.png */; };
+		77C5E11818EA9D1C001246F6 /* ELVAccountAddOneDriveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5E11718EA9D1C001246F6 /* ELVAccountAddOneDriveVC.m */; };
+		77C5E11A18EAA28A001246F6 /* LiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C5E11918EAA28A001246F6 /* LiveSDK.framework */; };
+		77C5E11B18EAA2DC001246F6 /* LiveSDK.framework in Resources */ = {isa = PBXBuildFile; fileRef = 77C5E11918EAA28A001246F6 /* LiveSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +117,9 @@
 		77ADDED918E8E6C300E88600 /* ELVFolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVFolderCell.h; sourceTree = "<group>"; };
 		77ADDEDA18E8E6C300E88600 /* ELVFolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVFolderCell.m; sourceTree = "<group>"; };
 		77ADDEDC18E8E8C500E88600 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
+		77C5E11618EA9D1C001246F6 /* ELVAccountAddOneDriveVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVAccountAddOneDriveVC.h; sourceTree = "<group>"; };
+		77C5E11718EA9D1C001246F6 /* ELVAccountAddOneDriveVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVAccountAddOneDriveVC.m; sourceTree = "<group>"; };
+		77C5E11918EAA28A001246F6 /* LiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiveSDK.framework; path = "../../../Downloads/LiveSDK-for-iOS-master/bin/LiveSDK.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77C5E11A18EAA28A001246F6 /* LiveSDK.framework in Frameworks */,
 				7744746918E6E395000C0153 /* QuartzCore.framework in Frameworks */,
 				7744746718E6E38A000C0153 /* Security.framework in Frameworks */,
 				7744746518E6E35C000C0153 /* DropboxSDK.framework in Frameworks */,
@@ -165,6 +172,7 @@
 		7744742818E6E1E0000C0153 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77C5E11918EAA28A001246F6 /* LiveSDK.framework */,
 				7744746818E6E395000C0153 /* QuartzCore.framework */,
 				7744746618E6E38A000C0153 /* Security.framework */,
 				7744746418E6E35C000C0153 /* DropboxSDK.framework */,
@@ -278,6 +286,8 @@
 				7744748418E6FA8E000C0153 /* ELVAccountAddDropboxVC.m */,
 				7744749518E7C820000C0153 /* ELVAccountsListingVC.h */,
 				7744749618E7C820000C0153 /* ELVAccountsListingVC.m */,
+				77C5E11618EA9D1C001246F6 /* ELVAccountAddOneDriveVC.h */,
+				77C5E11718EA9D1C001246F6 /* ELVAccountAddOneDriveVC.m */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";
@@ -441,6 +451,7 @@
 				7744747718E6F42A000C0153 /* Accounts_iPhone.storyboard in Resources */,
 				7744747C18E6F7C1000C0153 /* box.png in Resources */,
 				7744747D18E6F7C1000C0153 /* OneDrive.png in Resources */,
+				77C5E11B18EAA2DC001246F6 /* LiveSDK.framework in Resources */,
 				7744743D18E6E1E1000C0153 /* Main_iPhone.storyboard in Resources */,
 				7744747E18E6F7C1000C0153 /* dropbox.jpeg in Resources */,
 				7744743418E6E1E0000C0153 /* InfoPlist.strings in Resources */,
@@ -472,6 +483,7 @@
 				7744749718E7C820000C0153 /* ELVAccountsListingVC.m in Sources */,
 				7744749A18E7CA3E000C0153 /* ELVFilesListingVC.m in Sources */,
 				7744747218E6F300000C0153 /* ELVMasterViewController.m in Sources */,
+				77C5E11818EA9D1C001246F6 /* ELVAccountAddOneDriveVC.m in Sources */,
 				77595B2218E96D1C00FBA8A1 /* ELVSettingsVC.m in Sources */,
 				7744747518E6F320000C0153 /* ELVAppDelegate.m in Sources */,
 				77595B2818E9A07000FBA8A1 /* ELVFileViewVC.m in Sources */,
@@ -618,6 +630,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"/Users/vt/Downloads/LiveSDK-for-iOS-master/bin",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "yekdrive/yekdrive-Prefix.pch";
@@ -635,6 +648,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"/Users/vt/Downloads/LiveSDK-for-iOS-master/bin",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "yekdrive/yekdrive-Prefix.pch";

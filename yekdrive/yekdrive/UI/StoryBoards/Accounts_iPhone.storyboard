@@ -104,11 +104,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="cHZ-Bi-umw">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" rowHeight="60" id="cHZ-Bi-umw">
                                         <rect key="frame" x="0.0" y="184" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cHZ-Bi-umw" id="8CU-wH-OoT">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="253" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OneDrive.png" translatesAutoresizingMaskIntoConstraints="NO" id="9iF-l3-8bA">
@@ -124,6 +124,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="f1G-63-jOo" kind="push" id="lZK-Eq-kKs"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -162,7 +165,7 @@ taps on bellow button to remove the account.</string>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAa-xs-qzk">
                                 <rect key="frame" x="20" y="262" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="remove your dropbox account">
+                                <state key="normal" title="remove your Dropbox account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -176,7 +179,47 @@ taps on bellow button to remove the account.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wvy-3l-MVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1610" y="-72"/>
+            <point key="canvasLocation" x="1638" y="-253"/>
+        </scene>
+        <!--Account Add One DriveVC - OneDrive-->
+        <scene sceneID="4UU-xn-k81">
+            <objects>
+                <viewController id="f1G-63-jOo" customClass="ELVAccountAddOneDriveVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cwD-EN-Bij"/>
+                        <viewControllerLayoutGuide type="bottom" id="6da-W4-zws"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zdh-MG-hX9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Ebv-XF-dt2">
+                                <rect key="frame" x="20" y="141" width="280" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">seems you have already linked your OneDrive account.
+taps on bellow button to remove the account.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7eu-Iv-IKf">
+                                <rect key="frame" x="20" y="282" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="remove your OneDrive account">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="removeButton:" destination="Oje-yJ-iRi" eventType="touchUpInside" id="dIk-rf-SkU"/>
+                                    <action selector="signOutButtonHandler:" destination="f1G-63-jOo" eventType="touchUpInside" id="bdA-AZ-E6p"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="OneDrive" id="NAJ-20-8SD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PcE-el-RwI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1646" y="599"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1zH-kl-0Gm">

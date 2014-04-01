@@ -15,7 +15,6 @@
 @property NSString* itemId;
 @property NSString* extension;
 @property NSObject* originalObject;
-
 @property  long long totalBytes;
 @property  NSDate* lastModifiedDate;
 @property  NSString* size;
@@ -24,6 +23,8 @@
 @property NSString* path;
 @property ELVStorageItem* parent;
 @property StorageSourceType storageSource;
+@property BOOL isDeleted;
+
 -(NSString*) getLocalPath;
 -(NSString*)getLocalFolder;
 

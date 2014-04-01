@@ -45,6 +45,12 @@ static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKv
     [super viewDidLoad];
     [self setupBindings];
     
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]
+                                        init];
+    refreshControl.tintColor = [UIColor redColor];
+    [refreshControl addTarget:self action:@selector(load) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+    
     [self load];
 }
 
@@ -99,6 +105,7 @@ static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKv
         }
         
         dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [self.refreshControl endRefreshing];
             [self.tableView reloadData];
         });
     }
