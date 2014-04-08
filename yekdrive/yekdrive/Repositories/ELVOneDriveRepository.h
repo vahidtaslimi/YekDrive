@@ -11,7 +11,7 @@
 #import "ELVStorageItem.h"
 #import "LiveSDK/LiveConnectClient.h"
 
-@interface ELVOneDriveRepository : NSObject<ELVIOnlineStorageRepository,LiveOperationDelegate, LiveDownloadOperationDelegate>
+@interface ELVOneDriveRepository : NSObject<ELVIOnlineStorageRepository,LiveOperationDelegate,LiveAuthDelegate, LiveDownloadOperationDelegate>
 
 @property (strong, nonatomic) ELVStorageItem *parent;
 @property (strong, nonatomic) NSString *objectId;

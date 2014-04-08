@@ -19,6 +19,15 @@
 @synthesize downloadProgress;
 @synthesize lastDownloadedFilename;
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.liveClient =[self getConnection];
+    }
+    return self;
+}
+
 -(void)loadItemsInFolder:(ELVStorageItem*)parentFolder
 {
     NSString* path=@"/";
@@ -103,11 +112,13 @@
 
 - (void) loadFolderContent
 {
+    if(self.liveClient.session != nil){
         [self.liveClient getWithPath:self.filesPath
                             delegate:self
                            userState:@"load-folder-content"];
     
        // [self.delegate fullFolderTreeLoaded:self];
+    }
 }
 
 - (void) loadFileContent
@@ -225,4 +236,32 @@
     // We don't load file from here. The callback should not happen here.
 }
 
+
+#pragma mark - LiveAuthDelegate
+-(LiveConnectClient*)getConnection
+{
+    NSString * const CLIENT_ID = @"0000000048116F88";
+    NSArray* _scopes = [NSArray arrayWithObjects:
+               @"wl.signin",
+               @"wl.basic",
+               @"wl.skydrive",
+               @"wl.offline_access", nil];
+  LiveConnectClient*  liveClient = [[LiveConnectClient alloc] initWithClientId:CLIENT_ID
+                                                      scopes:_scopes
+                                                    delegate:self];
+    return liveClient;
+}
+
+- (void) authCompleted: (LiveConnectSessionStatus) status
+               session: (LiveConnectSession *) session
+             userState: (id) userState
+{
+    
+}
+
+- (void) authFailed: (NSError *) error
+          userState: (id)userState
+{
+    
+}
 @end

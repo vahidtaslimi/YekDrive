@@ -14,7 +14,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="nzk-wH-yfx">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nzk-wH-yfx" id="yVF-t2-dlK">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -34,11 +34,7 @@
                                 <action selector="doneButtonClick:" destination="YVu-hW-E0a" id="xYl-pA-in0"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="add" id="Pjr-3W-4hu">
-                            <connections>
-                                <segue destination="EQ5-PX-XAp" kind="push" identifier="add_account" id="ZO2-qf-Yb6"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="add" id="Pjr-3W-4hu"/>
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="M8Y-A4-OYo" id="JiN-sQ-qGa"/>
@@ -46,7 +42,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANv-pa-PWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="644" y="59"/>
+            <point key="canvasLocation" x="567" y="426"/>
         </scene>
         <!--Account SelectionVC - account type-->
         <scene sceneID="MxS-hJ-veZ">
@@ -136,7 +132,13 @@
                             <outlet property="delegate" destination="EQ5-PX-XAp" id="Zbh-S4-BlI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="account type" id="mE3-3U-bTX"/>
+                    <navigationItem key="navigationItem" title="account type" id="mE3-3U-bTX">
+                        <barButtonItem key="rightBarButtonItem" title="done" id="8oE-SV-4NE">
+                            <connections>
+                                <action selector="doneButtonHandler:" destination="EQ5-PX-XAp" id="kGn-hb-tSw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A3S-rl-MJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -229,7 +231,7 @@ taps on bellow button to remove the account.</string>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="YVu-hW-E0a" kind="relationship" relationship="rootViewController" id="dPg-Pl-3VX"/>
+                        <segue destination="EQ5-PX-XAp" kind="relationship" relationship="rootViewController" id="kkv-2R-IfG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g9d-bI-MTU" userLabel="First Responder" sceneMemberID="firstResponder"/>

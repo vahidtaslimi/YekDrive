@@ -10,4 +10,6 @@
 
 @interface ELVAccountSelectionVC : UITableViewController
 
+- (IBAction)doneButtonHandler:(id)sender;
+
 @end

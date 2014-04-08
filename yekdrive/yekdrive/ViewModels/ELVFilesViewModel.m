@@ -35,8 +35,8 @@ static NSString *ELVFileListingViewModelDropboxKvoContext = @"ELVFileListingView
 
 -(void) loadItemsInFolder:(ELVStorageItem*)parentFolder
 {
-  //  [_dropboxRepository loadItemsInFolder:parentFolder];
-    [_oneDriveRepository loadItemsInFolder:parentFolder];
+  [_dropboxRepository loadItemsInFolder:parentFolder];
+  //  [_oneDriveRepository loadItemsInFolder:parentFolder];
     
 }
 -(void)openItem:(ELVStorageItem *)item

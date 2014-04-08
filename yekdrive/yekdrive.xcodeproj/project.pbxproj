@@ -48,6 +48,10 @@
 		77C5E11A18EAA28A001246F6 /* LiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C5E11918EAA28A001246F6 /* LiveSDK.framework */; };
 		77C5E11B18EAA2DC001246F6 /* LiveSDK.framework in Resources */ = {isa = PBXBuildFile; fileRef = 77C5E11918EAA28A001246F6 /* LiveSDK.framework */; };
 		77C5E11E18EAA6B5001246F6 /* ELVOneDriveRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5E11D18EAA6B5001246F6 /* ELVOneDriveRepository.m */; };
+		77FC025018F0C9D900425A27 /* ELVUpgradeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC024F18F0C9D900425A27 /* ELVUpgradeHelper.m */; };
+		77FC025318F0CA0600425A27 /* ELVDatabaseStorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC025218F0CA0600425A27 /* ELVDatabaseStorageHelper.m */; };
+		77FC025618F40C3E00425A27 /* ELVLocalStorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC025518F40C3E00425A27 /* ELVLocalStorageHelper.m */; };
+		77FC025B18F4165400425A27 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FC025A18F4165400425A27 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +127,16 @@
 		77C5E11918EAA28A001246F6 /* LiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiveSDK.framework; path = "../../../Downloads/LiveSDK-for-iOS-master/bin/LiveSDK.framework"; sourceTree = "<group>"; };
 		77C5E11C18EAA6B5001246F6 /* ELVOneDriveRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVOneDriveRepository.h; sourceTree = "<group>"; };
 		77C5E11D18EAA6B5001246F6 /* ELVOneDriveRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVOneDriveRepository.m; sourceTree = "<group>"; };
+		77FC024E18F0C9D900425A27 /* ELVUpgradeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVUpgradeHelper.h; sourceTree = "<group>"; };
+		77FC024F18F0C9D900425A27 /* ELVUpgradeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVUpgradeHelper.m; sourceTree = "<group>"; };
+		77FC025118F0CA0600425A27 /* ELVDatabaseStorageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVDatabaseStorageHelper.h; sourceTree = "<group>"; };
+		77FC025218F0CA0600425A27 /* ELVDatabaseStorageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVDatabaseStorageHelper.m; sourceTree = "<group>"; };
+		77FC025418F40C3E00425A27 /* ELVLocalStorageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELVLocalStorageHelper.h; sourceTree = "<group>"; };
+		77FC025518F40C3E00425A27 /* ELVLocalStorageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELVLocalStorageHelper.m; sourceTree = "<group>"; };
+		77FC025718F40CCE00425A27 /* IELVLocalStorageHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IELVLocalStorageHelper.h; sourceTree = "<group>"; };
+		77FC025818F40D1A00425A27 /* ELVConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELVConstants.h; sourceTree = "<group>"; };
+		77FC025918F4127900425A27 /* IELVDatabaseStorageHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IELVDatabaseStorageHelper.h; sourceTree = "<group>"; };
+		77FC025A18F4165400425A27 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77FC025B18F4165400425A27 /* libsqlite3.dylib in Frameworks */,
 				77C5E11A18EAA28A001246F6 /* LiveSDK.framework in Frameworks */,
 				7744746918E6E395000C0153 /* QuartzCore.framework in Frameworks */,
 				7744746718E6E38A000C0153 /* Security.framework in Frameworks */,
@@ -175,6 +190,7 @@
 		7744742818E6E1E0000C0153 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77FC025A18F4165400425A27 /* libsqlite3.dylib */,
 				77C5E11918EAA28A001246F6 /* LiveSDK.framework */,
 				7744746818E6E395000C0153 /* QuartzCore.framework */,
 				7744746618E6E38A000C0153 /* Security.framework */,
@@ -298,6 +314,7 @@
 		7744748618E6FE00000C0153 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				77FC024D18F0C9CB00425A27 /* Helpers */,
 				77ADDED118E8DA1A00E88600 /* Extensions */,
 				7744748718E6FE00000C0153 /* Contracts */,
 				7744748818E6FE00000C0153 /* Models */,
@@ -309,6 +326,8 @@
 			isa = PBXGroup;
 			children = (
 				7744748C18E6FF8E000C0153 /* ELVIOnlineStorageRepository.h */,
+				77FC025718F40CCE00425A27 /* IELVLocalStorageHelper.h */,
+				77FC025918F4127900425A27 /* IELVDatabaseStorageHelper.h */,
 			);
 			path = Contracts;
 			sourceTree = "<group>";
@@ -371,6 +390,20 @@
 				77ADDEDA18E8E6C300E88600 /* ELVFolderCell.m */,
 			);
 			path = UICells;
+			sourceTree = "<group>";
+		};
+		77FC024D18F0C9CB00425A27 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				77FC025818F40D1A00425A27 /* ELVConstants.h */,
+				77FC025418F40C3E00425A27 /* ELVLocalStorageHelper.h */,
+				77FC025518F40C3E00425A27 /* ELVLocalStorageHelper.m */,
+				77FC025118F0CA0600425A27 /* ELVDatabaseStorageHelper.h */,
+				77FC025218F0CA0600425A27 /* ELVDatabaseStorageHelper.m */,
+				77FC024E18F0C9D900425A27 /* ELVUpgradeHelper.h */,
+				77FC024F18F0C9D900425A27 /* ELVUpgradeHelper.m */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,6 +514,7 @@
 				7744748B18E6FE8F000C0153 /* ELVStorageItem.m in Sources */,
 				77ADDEDB18E8E6C300E88600 /* ELVFolderCell.m in Sources */,
 				77ADDED418E8DA2B00E88600 /* NSObject+NTXObjectExtensions.m in Sources */,
+				77FC025018F0C9D900425A27 /* ELVUpgradeHelper.m in Sources */,
 				77ADDED818E8E6B100E88600 /* ELVFileCell.m in Sources */,
 				77595B2518E9986E00FBA8A1 /* ELVEnums.m in Sources */,
 				7744747118E6F300000C0153 /* ELVDetailViewController.m in Sources */,
@@ -493,10 +527,12 @@
 				77595B2218E96D1C00FBA8A1 /* ELVSettingsVC.m in Sources */,
 				7744747518E6F320000C0153 /* ELVAppDelegate.m in Sources */,
 				77595B2818E9A07000FBA8A1 /* ELVFileViewVC.m in Sources */,
+				77FC025618F40C3E00425A27 /* ELVLocalStorageHelper.m in Sources */,
 				7744743618E6E1E0000C0153 /* main.m in Sources */,
 				7744749018E7004C000C0153 /* ELVDropboxRepository.m in Sources */,
 				7744749418E7C485000C0153 /* ELVFilesViewModel.m in Sources */,
 				7744748518E6FA8E000C0153 /* ELVAccountAddDropboxVC.m in Sources */,
+				77FC025318F0CA0600425A27 /* ELVDatabaseStorageHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

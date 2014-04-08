@@ -89,8 +89,8 @@ static NSString * const CLIENT_ID = @"0000000048116F88";
         // self.viewPhotosButton.hidden = NO;
         //self.userInfoLabel.text = @"";
         
-        [_liveClient getWithPath:@"me" delegate:self userState:@"me"];
-        [_liveClient getWithPath:@"me/picture" delegate:self userState:@"me-picture"];
+       // [_liveClient getWithPath:@"me" delegate:self userState:@"me"];
+       // [_liveClient getWithPath:@"me/picture" delegate:self userState:@"me-picture"];
     }
 }
 
