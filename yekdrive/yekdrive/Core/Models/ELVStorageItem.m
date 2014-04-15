@@ -14,7 +14,7 @@
 -(NSString*)getLocalPath
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    NSString* myLocalPath=  [NSString stringWithFormat:@"%@/%u%@",[paths objectAtIndex:0],self.storageSource,self.path];
+    NSString* myLocalPath=  [NSString stringWithFormat:@"%@/%u%@",[paths objectAtIndex:0],self.sourceType,self.path];
     return myLocalPath;
 }
 

@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ELVFilesViewModel.h"
 
 @interface ELVFilesListingVC : UITableViewController
+
+@property ELVFilesViewModel* dataContext;
+
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *upButton;
+
 - (IBAction)upButtonHandler:(id)sender;
 
 @end

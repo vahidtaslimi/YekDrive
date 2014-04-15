@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ELVStorageItem.h"
 
-@protocol ELVIOnlineStorageRepository <NSObject>
+@protocol IELVOnlineStorageRepository <NSObject>
 @required
 -(void)loadItemsInFolder:(ELVStorageItem*)parentFolder;
 -(BOOL)openFile:(ELVStorageItem* )file;

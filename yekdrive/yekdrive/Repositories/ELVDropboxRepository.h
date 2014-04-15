@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ELVIOnlineStorageRepository.h"
+#import "IELVOnlineStorageRepository.h"
 #import <DropboxSDK/DropboxSDK.h>
 
-@interface ELVDropboxRepository : NSObject<ELVIOnlineStorageRepository,DBRestClientDelegate>
+@interface ELVDropboxRepository : NSObject<IELVOnlineStorageRepository,DBRestClientDelegate>
 
 @property (nonatomic, readonly) DBRestClient* restClient;
 @property BOOL working;

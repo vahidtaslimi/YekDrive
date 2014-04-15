@@ -8,12 +8,25 @@
 
 #import "ELVAppDelegate.h"
 #import <DropboxSDK/DropboxSDK.h>
+#import "ELVDefaultIoc.h"
+
 
 @implementation ELVAppDelegate
 {
     	NSString *relinkUserId;
 }
 
+-(id)init
+{
+	self = [super init];
+	if(self)
+    {
+		JSObjectionInjector *injector = [JSObjection createInjector:[[ELVDefaultIoc alloc] init]];
+		[JSObjection setDefaultInjector:injector];
+        
+    }
+	return self;
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ELVIOnlineStorageRepository.h"
+#import "IELVOnlineStorageRepository.h"
 
 @interface ELVFilesViewModel : NSObject
 typedef void (^loadBlockSuccess) (NSMutableArray* items);
@@ -17,7 +17,7 @@ typedef void (^loadBlockFailure) (NSString* errorMessage);
 @property NSString* lastDownloadedFilename;
 @property CGFloat downloadProgress;
 
-- (id)initWithParameters:(id<ELVIOnlineStorageRepository>) dropboxRepository andOneDriveRepository:(id<ELVIOnlineStorageRepository>) oneDriveRepository;
+- (id)initWithParameters:(id<IELVOnlineStorageRepository>) dropboxRepository andOneDriveRepository:(id<IELVOnlineStorageRepository>) oneDriveRepository;
 
 -(void) loadItemsInFolder:(ELVStorageItem*)parentFolder;
 

@@ -2,7 +2,7 @@
 #import "ELVLocalStorageHelper.h"
 #import "ELVConstants.h"
 
-NSString * NTXLocalStorageHelperKeyStoreIdentifier = @"NintexPasswordVault";
+NSString * ELVLocalStorageHelperKeyStoreIdentifier = @"ElvunPasswordVault";
 
 @implementation ELVLocalStorageHelper
 {

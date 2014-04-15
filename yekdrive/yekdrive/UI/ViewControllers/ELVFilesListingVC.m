@@ -9,13 +9,14 @@
 #import "ELVFilesListingVC.h"
 #import "ELVFilesViewModel.h"
 #import "ELVStorageItem.h"
-#import "ELVIOnlineStorageRepository.h"
+#import "IELVOnlineStorageRepository.h"
 #import "ELVDropboxRepository.h"
 #import "NSObject+NTXObjectExtensions.h"
 #import "ELVFileCell.h"
 #import "ELVFolderCell.h"
 #import "ELVFileViewVC.h"
 #import "ElVOneDriveRepository.h"
+#import <Objection-iOS/Objection.h>
 
 static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKvoContext";
 
@@ -33,9 +34,7 @@ static NSString *ELVFileListingVCDropboxKvoContext = @"ELVFileListingVCDropboxKv
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        id<ELVIOnlineStorageRepository> dropboxRepo=[[ELVDropboxRepository alloc]init];
-        id<ELVIOnlineStorageRepository> oneDriveRepo=[[ELVOneDriveRepository alloc]init];
-        _dataContext=[[ELVFilesViewModel alloc]initWithParameters:dropboxRepo andOneDriveRepository:oneDriveRepo];
+         self.dataContext=[[JSObjection defaultInjector]getObject:[ELVFilesViewModel class]];
     }
     
     return self;

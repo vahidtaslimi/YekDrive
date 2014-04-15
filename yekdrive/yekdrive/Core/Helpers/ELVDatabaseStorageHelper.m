@@ -2,36 +2,170 @@
 #import <sqlite3.h>
 #import "ELVStorageItem.h"
 #import "ELVConstants.h"
+#import <Objection-iOS/Objection.h>
 
 static sqlite3 *database = nil;
 
 @implementation ELVDatabaseStorageHelper
 
--(id)init{
-    self=[super init];
-    if(self)
-    {
-        self.localStorageHelper = [[ELVLocalStorageHelper alloc]init];
+objection_requires(@"localStorageHelper");
+
+- (id)init
+{
+    self = [super init];
+    if (self){
+        [[JSObjection defaultInjector] injectDependencies:self];
     }
     
     return self;
 }
-#pragma mark - Public Methods
--(NSString*)getApplicationSettingByName:(NSString*)settingName
+
+
+#pragma mark - Item Methods
+- (BOOL) doesItemExist:(ELVStorageItem*)item
 {
-    return @"string";
-}
--(void)setApplicationSettingValue:(NSString*)value forSettingName:(NSString*)settingName
-{
+    bool exists = false;
+    sqlite3_stmt * existStmt;
+    
+    const char * existSql = "select exists (SELECT 1 FROM files WHERE Id = ? and SourceType = ?)";
+    
+
+        if(sqlite3_prepare_v2(database, existSql, -1, &existStmt, NULL) != SQLITE_OK)
+            NSAssert1(0, @"Error while creating add statement. '%s'", sqlite3_errmsg(database));
+        
+        sqlite3_bind_text(existStmt, 1, [item.itemId UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(existStmt, 2, item.sourceType);
+        
+        if (SQLITE_ROW == sqlite3_step(existStmt))
+        {
+            if (sqlite3_column_int(existStmt, 0) != 0)
+                exists = true;
+        }
+        sqlite3_finalize(existStmt);
+    
+    return exists;
     
 }
 
-- (NSMutableArray *) getItemsInFolder:(NSString*)parentId
+- (void) addOrUpdateItem:(ELVStorageItem*)item
 {
-    return nil;
+    
+    
+    if (![self doesItemExist:item])
+    {
+        // Add
+        sqlite3_stmt * addStmt;
+        const char * addSql = "INSERT INTO files (Id,Name,Size,IconUrl,LastModified,Filename,Path,IsFolder,IsDeleted,ParentId,ServerUrl,SourceId,SourceType,CreatedById,CreatedByName,IsShared) VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16)";
+        if(sqlite3_prepare_v2(database, addSql, -1, &addStmt, NULL) != SQLITE_OK)
+            NSAssert1(0, @"Error while creating add statement. '%s'", sqlite3_errmsg(database));
+        /* param 1 (text): id
+         param 2 (text): name
+         param 3 (text): size
+         param 4 (text): iconurl
+         param 5 (text): lastmodified
+         param 6 (text): filename
+         param 7 (text): path
+         param 8 (integer): 0
+         param 9 (integer): 0
+         param 10 (text): parentid
+         param 11 (text): serviceurl
+         param 12 (integer): 0
+         param 13 (text): dropbox
+         param 14 (text): createdbyid
+         param 15 (text): createdbyname
+         */
+        
+        sqlite3_bind_text(addStmt, 1, [item.itemId UTF8String],-1,SQLITE_TRANSIENT);
+        sqlite3_bind_text(addStmt, 2, [item.name UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int64(addStmt, 3, item.totalBytes);
+        sqlite3_bind_text(addStmt, 4, [item.icon UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(addStmt, 5, [item.lastModifiedDate timeIntervalSince1970]);
+        sqlite3_bind_text(addStmt, 6, [item.filename UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(addStmt, 7, [item.path UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(addStmt, 8, item.isFolder);
+        sqlite3_bind_int(addStmt, 9, item.isDeleted);
+        sqlite3_bind_text(addStmt, 10, [item.parentId UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(addStmt, 11, [item.serverUrl UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(addStmt, 12, item.sourceId);
+        sqlite3_bind_int(addStmt, 13, item.sourceType);
+        sqlite3_bind_text(addStmt, 14, [item.createdById UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(addStmt, 15, [item.createdByName UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(addStmt, 16, item.isShared);
+        
+        if(SQLITE_DONE != sqlite3_step(addStmt))
+        {
+            int errorCode = sqlite3_errcode(database);
+            if (errorCode != NTXSQLITE_IOERR)
+                NSAssert1(0, @"Error while inserting data. '%s'", sqlite3_errmsg(database));
+        }
+        sqlite3_finalize(addStmt);
+    }
+    else
+    {
+        // Update
+       
+       // sqlite3_finalize(updateStmt);
+    }
 }
 
-- (NSString *) getApplicationSetting:(NSString *)name
+- (NSArray *) getItemsInFolder:(NSString*) folderId
+{
+    sqlite3_stmt * statement;
+    
+    const char * sql = "Select Id,Name,Size,IconUrl,LastModified,Filename,Path,IsFolder,IsDeleted,ParentId,ServerUrl,SourceId,SourceType,CreatedById,CreatedByName,IsShared from [Files] where [ParentId] = ?";
+    
+    
+    if(sqlite3_prepare_v2(database, sql, -1, &statement, NULL) != SQLITE_OK)
+    {
+        NSAssert1(0, @"Error while creating select statement. '%s'", sqlite3_errmsg(database));
+        return nil;
+    }
+    
+    sqlite3_bind_text(statement, 10, [folderId UTF8String], -1, SQLITE_TRANSIENT);
+    
+    // Fetch the rows
+    NSMutableArray * items = [[NSMutableArray alloc] init];
+    while (sqlite3_step(statement) == SQLITE_ROW)
+    {
+        /* param 1 (text): id
+         param 2 (text): name
+         param 3 (text): size
+         param 4 (text): iconurl
+         param 5 (text): lastmodified
+         param 6 (text): filename
+         param 7 (text): path
+         param 8 (integer): 0
+         param 9 (integer): 0
+         param 10 (text): parentid
+         param 11 (text): serviceurl
+         param 12 (integer): 0
+         param 13 (text): dropbox
+         param 14 (text): createdbyid
+         param 15 (text): createdbyname
+         */
+        // Get the details for the given form
+        ELVStorageItem* item = [[ELVStorageItem alloc]init];
+        item.itemId = [self getColumnText:statement index:0];
+        item.name = [self getColumnText:statement index:1];
+        item.size = [self getColumnText:statement index:2];
+        item.icon = [self getColumnText:statement index:3];
+        
+        NSString * uniqueId = [[NSString alloc] initWithUTF8String: (char *)sqlite3_column_text(statement, 1)];
+        cachedForm.formId = uniqueId;
+        cachedForm.lastUpdated = [NSDate dateWithTimeIntervalSince1970:sqlite3_column_int(statement, 2)];
+        cachedForm.Name = [self getColumnText:statement index:3];
+        cachedForm.formDescription = [[self getColumnText:statement index:4] stripHtml];
+        cachedForm.Type=sqlite3_column_int(statement, 5);
+        [items addObject:cachedForm];
+    }
+    
+    sqlite3_finalize(statement);
+    
+    return items;
+}
+
+#pragma mark - AppSetting Methods
+- (NSString *) getApplicationSettingByName:(NSString *)name
 {
     NSString * setting = nil;
     sqlite3_stmt * statement;
@@ -58,13 +192,13 @@ static sqlite3 *database = nil;
     return setting;
 }
 
-- (bool) setApplicationSetting:(NSString *)name value:(NSString *)value
+-(void)setApplicationSettingValue:(NSString*)value forSettingName:(NSString*)settingName
 {
     // Don't allow insertion of null values into DB as this would make it hard to determine if it is there or not in the future
     if (value == nil)
-        return false;
+        return ;
     
-    NSString * currentValue = [self getApplicationSetting:name];
+    NSString * currentValue = [self getApplicationSettingByName:settingName];
     
     const char * sql;
     
@@ -77,91 +211,23 @@ static sqlite3 *database = nil;
     if(sqlite3_prepare_v2(database, sql, -1, &statement, NULL) != SQLITE_OK)
     {
         NSAssert2(0, @"Error while creating add/update application setting statement. '%s' from sql '%s'", sqlite3_errmsg(database), sql);
-        return false;
+        return ;
     }
     
-    sqlite3_bind_text(statement, 1, [name UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(statement, 1, [settingName UTF8String], -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(statement, 2, [value UTF8String], -1, SQLITE_TRANSIENT);
     
     if(SQLITE_DONE != sqlite3_step(statement))
     {
         NSAssert1(0, @"Error while adding data. '%s'", sqlite3_errmsg(database));
-        return false;
+        return ;
     }
     
     sqlite3_finalize(statement);
-    return true;
+    return ;
 }
 
-
-- (NSObject*) getInstance:(NSString*)sourceId itemId:(NSString*)itemId profileId:(int)profileId
-{
-   /*
-	if ([NTXDatabaseStorageHelper getDatabase])
-    {
-		const char *getSql = "SELECT Id, FormId, ProfileId, SourceId, Type, Token, Json, DraftJson, State, LastUpdated, Name, Description, ErrorMessage, Submitting "
-                            "FROM DbCachedFormInstance "
-                            "WHERE ProfileId = ? and SourceId = ? and FormId = ?";
-		sqlite3_stmt *getStmt;
-        
-		if(sqlite3_prepare_v2(database, getSql, -1, &getStmt, NULL) == SQLITE_OK) {
-            
-			sqlite3_bind_int(getStmt, 1, profileId);
-            sqlite3_bind_text(getStmt, 2, [sourceId UTF8String], -1, SQLITE_TRANSIENT);
-            sqlite3_bind_text(getStmt, 3, [itemId UTF8String], -1, SQLITE_TRANSIENT);
-            
-			while(sqlite3_step(getStmt) == SQLITE_ROW)
-            {
-                cachedFormInstance = [[NTXCachedFormInstance alloc] init];
-                cachedFormInstance.instanceId = sqlite3_column_int(getStmt, 0);
-                cachedFormInstance.formId = [self getColumnText:getStmt index:1];
-                cachedFormInstance.profileId = sqlite3_column_int(getStmt, 2);
-                cachedFormInstance.sourceId = [self getColumnText:getStmt index:3];
-                cachedFormInstance.type = sqlite3_column_int(getStmt, 4);
-                cachedFormInstance.token = [self getColumnText:getStmt index:5];
-                cachedFormInstance.json = [self getColumnText:getStmt index:6];
-                cachedFormInstance.draftJson = [self getColumnText:getStmt index:7];
-                cachedFormInstance.state = sqlite3_column_int(getStmt, 8);
-                cachedFormInstance.lastUpdated = [NSDate dateWithTimeIntervalSince1970:sqlite3_column_int(getStmt, 9)];
-                cachedFormInstance.name = [self getColumnText:getStmt index:10];
-                cachedFormInstance.formDescription = [[self getColumnText:getStmt index:11] stripHtml];
-                cachedFormInstance.errorMessage = [self getColumnText:getStmt index:12];
-                cachedFormInstance.submitting = sqlite3_column_int(getStmt, 13);
-			}
-            
-            sqlite3_finalize(getStmt);
-		}
-	}
-    */
-    return nil;
-}
-
-- (void) saveItemDefinition:(ELVStorageItem*)item
-{
-      /*  // Add
-        sqlite3_stmt * addStmt;
-        const char * addSql = "insert into DbCachedFormDefinition (ProfileId, FormId, SourceId, Type, Token, Json, LastUpdated) Values(?, ?, ?, ?, ?, ?, ?)";
-        if(sqlite3_prepare_v2(database, addSql, -1, &addStmt, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Error while creating add statement. '%s'", sqlite3_errmsg(database));
-        
-        sqlite3_bind_int(addStmt, 1, profileId);
-        sqlite3_bind_text(addStmt, 2, [formId UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(addStmt, 3, [sourceId UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_int(addStmt, 4, itemType);
-        sqlite3_bind_text(addStmt, 5, [[NSString empty] UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(addStmt, 6, [requestResult.responseString UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_int(addStmt, 7, [requestResult.lastModified timeIntervalSince1970]);
-        
-        if(SQLITE_DONE != sqlite3_step(addStmt))
-        {
-            int errorCode = sqlite3_errcode(database);
-            if (errorCode != NTXSQLITE_IOERR)
-                NSAssert1(0, @"Error while inserting data. '%s'", sqlite3_errmsg(database));
-        }
-        sqlite3_finalize(addStmt);
- */
-}
-
+#pragma mark - Generic Methods
 
 - (void) createDatabaseIfNeeded
 {
@@ -174,7 +240,7 @@ static sqlite3 *database = nil;
 	}
     
     const char *dbpath = [dbPath UTF8String];
- 
+    
     int sqliteThreadSafeCode = sqlite3_threadsafe();
     if (sqliteThreadSafeCode > 0)
     {
@@ -190,26 +256,28 @@ static sqlite3 *database = nil;
         char *errMsg;
         //App Setting
         const char * sql = "create table if not exists [DbAppSettings] ([Name] varchar not null collate nocase, [Value] varchar not null collate nocase)";
-              if (sqlite3_exec(database, sql, NULL, NULL, &errMsg) != SQLITE_OK)
-                NSAssert1(0, @"Failed to create DbAppSettings table. '%s'", sqlite3_errmsg(database));
+        if (sqlite3_exec(database, sql, NULL, NULL, &errMsg) != SQLITE_OK)
+            NSAssert1(0, @"Failed to create DbAppSettings table. '%s'", sqlite3_errmsg(database));
         
         // Files
-        const char *sql_stmt_files_table = "CREATE TABLE \"files\" (\"Id\" TEXT PRIMARY KEY  NOT NULL  UNIQUE , \"Name\" TEXT, \"Size\" NUMERIC, \"IconUrl\" TEXT, \"LastModified\" DATETIME, \"Filename\" TEXT, \"Path\" TEXT, \"IsFolder\" BOOL, \"IsDeleted\" BOOL, \"ParentId\" TEXT, \"ServerUrl\" TEXT, \"SourceId\" INTEGER, \"SourceType\" TEXT, \"Created\" DATETIME, \"CreatedById\" TEXT, \"CreatedByName\" TEXT)";
+        const char *sql_stmt_files_table = "CREATE TABLE \"files\" (\"Id\" TEXT PRIMARY KEY  NOT NULL  UNIQUE , \"Name\" TEXT, \"Size\" NUMERIC, \"IconUrl\" TEXT, \"LastModified\" DATETIME, \"Filename\" TEXT, \"Path\" TEXT, \"IsFolder\" BOOL, \"IsDeleted\" BOOL, \"ParentId\" TEXT, \"ServerUrl\" TEXT, \"SourceId\" INTEGER, \"SourceType\" TEXT, \"Created\" DATETIME, \"CreatedById\" TEXT, \"CreatedByName\" TEXT, \"IsShared\" BOOL))";
         
         if (sqlite3_exec(database, sql_stmt_files_table, NULL, NULL, &errMsg) != SQLITE_OK)
             NSAssert1(0, @"Failed to create DbProfile table. '%s'", sqlite3_errmsg(database));
         
         /*const char *sql_stmt_table4 = "CREATE TABLE if not exists \"DbCachedSource\" (\"Id\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL, \"SourceId\" VARCHAR NOT NULL collate nocase, \"Name\" VARCHAR NOT NULL collate nocase, \"ProfileId\" INTEGER NOT NULL, \"Enabled\" BOOL)";
-        
-        if (sqlite3_exec(database, sql_stmt_table4, NULL, NULL, &errMsg) != SQLITE_OK)
-            NSAssert1(0, @"Failed to create DbCachedSource table. '%s'", sqlite3_errmsg(database));
+         
+         if (sqlite3_exec(database, sql_stmt_table4, NULL, NULL, &errMsg) != SQLITE_OK)
+         NSAssert1(0, @"Failed to create DbCachedSource table. '%s'", sqlite3_errmsg(database));
          */
     }
     else
     {
-         NSAssert1(0, @"Failed to open/create database. '%s'", sqlite3_errmsg(database));
+        NSAssert1(0, @"Failed to open/create database. '%s'", sqlite3_errmsg(database));
     }
 }
+
+#pragma mark - private methods
 
 -(BOOL)doesColumnExists:(NSString *)table column:(NSString *)column
 {
@@ -225,8 +293,6 @@ static sqlite3 *database = nil;
     
     return columnExists;
 }
-
-
 
 -(void) createNewTableColumn:(NSString *)table column:(NSString *)column type:(NSString *)type
 {
@@ -253,7 +319,7 @@ static sqlite3 *database = nil;
 {
     const unsigned char * dbVal = sqlite3_column_text(statement, index);
     if (dbVal == nil)
-        return nil;	
+        return nil;
     return [NSString stringWithUTF8String:(char *)dbVal];
 }
 

@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ELVIOnlineStorageRepository.h"
+#import "IELVOnlineStorageRepository.h"
 #import "ELVStorageItem.h"
 #import "LiveSDK/LiveConnectClient.h"
 
-@interface ELVOneDriveRepository : NSObject<ELVIOnlineStorageRepository,LiveOperationDelegate,LiveAuthDelegate, LiveDownloadOperationDelegate>
+@interface ELVOneDriveRepository : NSObject<IELVOnlineStorageRepository,LiveOperationDelegate,LiveAuthDelegate, LiveDownloadOperationDelegate>
 
 @property (strong, nonatomic) ELVStorageItem *parent;
 @property (strong, nonatomic) NSString *objectId;

@@ -7,7 +7,7 @@
 //
 
 #import "ELVFilesViewModel.h"
-#import "ELVIOnlineStorageRepository.h"
+#import "IELVOnlineStorageRepository.h"
 #import "ELVDropboxRepository.h"
 #import "NSObject+NTXObjectExtensions.h"
 
@@ -15,13 +15,13 @@ static NSString *ELVFileListingViewModelDropboxKvoContext = @"ELVFileListingView
 
 @implementation ELVFilesViewModel
 {
-    NSObject<ELVIOnlineStorageRepository> *_dropboxRepository;
-    id<ELVIOnlineStorageRepository> _oneDriveRepository;
-    id<ELVIOnlineStorageRepository> _boxRepository;
+    NSObject<IELVOnlineStorageRepository> *_dropboxRepository;
+    id<IELVOnlineStorageRepository> _oneDriveRepository;
+    id<IELVOnlineStorageRepository> _boxRepository;
 }
 
 
-- (id)initWithParameters:(id<ELVIOnlineStorageRepository>) dropboxRepository andOneDriveRepository:(id<ELVIOnlineStorageRepository>) oneDriveRepository
+- (id)initWithParameters:(id<IELVOnlineStorageRepository>) dropboxRepository andOneDriveRepository:(id<IELVOnlineStorageRepository>) oneDriveRepository
 {
     self = [super init];
     if (self) {
